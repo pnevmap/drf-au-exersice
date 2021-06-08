@@ -15,6 +15,7 @@ export class Home {
   }
 
   loadRevisions() {
+    //TODO consider abstracting these http calls to avoid code duplication
     let httpClient = new HttpClient();
     httpClient.createRequest('/documents/')
       .asGet()
@@ -31,6 +32,7 @@ export class Home {
   }
 
   uploadAction(toUpload) {
+    //TODO consider abstracting these http calls to avoid code duplication
     let httpClient = new HttpClient();
     var form = new FormData();
     form.append('url', toUpload.url);
@@ -51,7 +53,7 @@ export class Home {
   }
 
   uploadRevisionAction(toUploadRevision) {
-
+    //TODO consider abstracting these http calls to avoid code duplication
     let httpClient = new HttpClient();
     var form = new FormData();
     form.append('url', toUploadRevision.url);
