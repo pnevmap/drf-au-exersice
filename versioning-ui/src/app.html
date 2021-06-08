@@ -1,0 +1,19 @@
+<template>
+  <require from="./styles.css"></require>
+  <div class="container-xl">
+
+    <nav class="navbar navbar-light bg-light border-bottom" role="navigation">
+      <a class="navbar-brand" href="#">
+        <i class="fa fa-user" style="padding-left: 10px;">
+          Welcome${userSession.currentUser ? ', ' + userSession.currentUser + '!' : ''}
+        </i>
+        <a class="col-form-label-lg border-dark" style="padding-right: 10px;" click.delegate="logoutAction()" href="#">
+          ${userSession.currentUser ? ' logout ' : ''}
+        </a>
+      </a>
+
+    </nav>
+
+    <router-view></router-view>
+  </div>
+</template>

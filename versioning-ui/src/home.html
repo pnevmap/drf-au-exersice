@@ -1,0 +1,83 @@
+<template>
+  <require from="./styles.css"></require>
+  <!-- <loading-indicator loading.bind="router.isNavigating || api.isRequesting"></loading-indicator> -->
+  <style>
+    table, th, td {
+      border: 1px solid gray;
+      padding: 5px;
+    }
+  </style>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="card-header caption-top fw-bold">
+        Documents:
+      </div>
+      <div class=""></div>
+      <div class="list-group">
+
+        <table class="text-break">
+          <thead>
+            <tr>
+              <th>Url</th>
+              <th>Create</th>
+              <th>Revisions</th>
+              <th>Add Revision</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tr repeat.for="document of documents" class="col-form-label-lg">
+            <td>
+              <a href.bind="'/documents/' + document.url" target="_blank" class="btn-link"><span>${document.url}</span></a>
+            </td>
+            
+            <td><span class="text-md-center"> ${document.created}</span></td>
+            <td>
+              <a href.bind="'#revisions?url=' + document.url">${document.revisions.length}</a>
+            </td>
+
+            <td>
+              <input type="file" class="col-form-label-sm" files.bind="document.file">
+            </td>
+            <td>
+              <input type="button" if.bind="document.file" name="submitRevision" class="btn-sm" value="upload" click.delegate="uploadRevisionAction(document)">
+            </td>
+
+          </tr>
+
+        </table>
+
+      </div>
+      <router-view class="col-lg-7"></router-view>
+    </div>
+  </div>
+  <div class="bg-gradient border-bottom" style="height: 15px"></div>
+  <div class="row card-header fw-bold">
+    Add new document here:
+  </div>
+  <div class="row card-footer">
+
+    <div class="row-cols-lg-6">
+      <div class="form-control">
+        <div>
+          <form id="upload-form" class="form" role="form" submit.delegate="uploadAction(toUpload)">
+            <table>
+              <tr>
+                <td><label for="url" class="col-form-label" style="padding-left: 15px">Url:</label></td>
+                <td class="col-form-label-sm"><input type="text" name="url" id="url" value.bind="toUpload.url"></td>
+              </tr>
+              <tr>
+                <td><label for="url" class="col-form-label" style="padding-left: 15px">select file:</label></td>
+                <td><input type="file" class="col-form-label" files.bind="toUpload.file"></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><input type="submit" name="submit" class="btn-group-sm" value="upload"></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</template>

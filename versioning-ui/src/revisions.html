@@ -1,0 +1,36 @@
+<template>
+  <style>
+    table, th, td {
+      border: 0px solid black;
+      padding: 5px;
+    }
+  </style>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="card-header caption-top">
+        Revisions:
+      </div>
+      <div class=""></div>
+      <div class="list-group">
+
+        <table class="text-break">
+          <thead>
+            <tr>
+              <th>Url</th>
+              <th>Uploaded time</th>
+            </tr>
+          </thead>
+          <tr repeat.for="revision of revisions.revisions" class="col-form-label-lg">
+            <td>
+              <a href.bind="'http://localhost:8090/documents/' + revision" target="_blank"><span>${revision}</span></a>
+            </td>
+            <td><span class="text-md-center"> ${revision}</span></td>
+          </tr>
+        </table>
+
+      </div>
+      <router-view class="col-lg-7"></router-view>
+    </div>
+  </div>
+  <div class="bg-gradient border-bottom" style="height: 15px"></div>
+</template>
