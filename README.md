@@ -19,7 +19,7 @@ The source of the backend can be found in the folder versioning
   
 #### Frontend  
 A web application based on aurelia.io   
-The web app, responds on /static/index.html and reuses the Django's login screen  
+The web app, responds at the url **/static/index.html** and reuses the Django's login screen  
 Sources for the web app can be found in the folder versioning-ui, however, the compiled files has been copied into the versioning/static folder  
   
   
