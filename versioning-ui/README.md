@@ -1,4 +1,5 @@
 # `versioning-ui`
+## this is a auto generated readme file, quite accurate but when the app is running on the default port does not have access to the back end due to cors
 
 This project is bootstrapped by [aurelia-cli](https://github.com/aurelia/cli).
 
