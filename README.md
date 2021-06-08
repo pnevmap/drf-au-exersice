@@ -10,9 +10,10 @@ Endpoints based on Django Rest Framework
 **PUT documents/**, accepting a document  model like {url:string, file:data }  
 **PUT documents/<url>**, accepting a model { file:data }  
   
-All the above endpoints required authentication that could happen at the endpoints bellow  
+All the above endpoints require authentication that could happen at the endpoints bellow  
 **GET, POST /api-auth/login** (and GET /api-auth/logout)   
 The authentication is Session based (the CRSF token functionallity has been retained)   
+Apart from the authentication, object level permissions is implemented in order to avoid user interaction with entities they don't own
   
 The source of the backend can be found in the folder versioning  
   
