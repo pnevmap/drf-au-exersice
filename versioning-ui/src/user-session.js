@@ -14,6 +14,7 @@ export class UserSession {
       this.currentUser = sessionUser;
       return true;
     } else {
+      //TODO chain or nest this call
       this.whoami();
       return true;//once i m here, i m authenticated!
     }
