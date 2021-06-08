@@ -22,7 +22,9 @@ def tearDownModule():
 
 
 class RevisionModelTests(TestCase):
-
+    """
+    tests for the Revision model
+    """
     def setUp(self):
         get_user_model().objects.create_user('temporary', 'temporary@gmail.com', 'temporary')
 
@@ -30,8 +32,6 @@ class RevisionModelTests(TestCase):
         pass
 
     def test_revision_index_and_revision_url(self):
-        """
-        """
         document = Document.objects.create(url='some-url', owner=User.objects.get(username='temporary'))
         revision0 = Revision.objects.create(document=document)
         revision1 = Revision.objects.create(document=document)
@@ -46,8 +46,6 @@ class RevisionModelTests(TestCase):
         self.assertEqual(revision2.revision_url, "some-url?revision=2")
 
     def test_revision_revision_assert_fields(self):
-        """
-        """
         mock_file = mock.MagicMock(spec=File)
         mock_file.name = 'test-file.jpg'
         user = User.objects.get(username='temporary')
@@ -69,6 +67,9 @@ def create_test_file(file_name='users/temporary/yet-test-file.txt', content="her
 
 
 class DocumentAPITests(APITestCase):
+    """
+    tests the Document API
+    """
     user = User
 
     def setUp(self):

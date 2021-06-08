@@ -1,9 +1,6 @@
 import os
 from django.db import models
 
-from base import settings
-
-
 def upload_to(instance, filename):
     base, extension = os.path.splitext(filename.lower())
     return f'users/{instance.document.owner}/{base}.{str(instance.index)}{extension}'

@@ -1,9 +1,7 @@
-import os
-
 from django.contrib.auth.models import User
 from django.db import transaction
-from django.http import FileResponse, HttpResponseNotFound, Http404
-from rest_framework import permissions, renderers, viewsets, status, mixins
+from django.http import FileResponse, Http404
+from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from versioning.models import Document, Revision
@@ -25,14 +23,12 @@ class DocumentViewSet(viewsets.ModelViewSet):
         return Response({'url': document.url, 'file': revision.url})
 
     def list(self, request, *args, **kwargs):
-
         data = self.queryset.filter(owner=request.user)
         url = kwargs.get("url")
         if url:
             data = data.filter(url=kwargs["url"])
 
-        serializer = DocumentSerializer(data, many=True,
-                                        context={'request': request})
+        serializer = DocumentSerializer(data, many=True, context={'request': request})
         return Response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):
@@ -62,8 +58,6 @@ class DocumentViewSet(viewsets.ModelViewSet):
             raise Http404
 
         revision = Revision.objects.create(document=self.queryset.filter(url=url).first(), file=request.data['file'])
-        # serializer = self.get_serializer()
-        # serializer = DocumentSerializer( data={'url': url, 'file': request.data['file']}, context={'request': request})
         return Response({'url': url, 'file': revision.url})
 
 
