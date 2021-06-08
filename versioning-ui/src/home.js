@@ -32,6 +32,7 @@ export class Home {
   }
 
   uploadAction(toUpload) {
+    //TODO Handle 500 exception raised by Unique constraint on duplicate document urls!
     //TODO consider abstracting these http calls to avoid code duplication
     let httpClient = new HttpClient();
     var form = new FormData();
