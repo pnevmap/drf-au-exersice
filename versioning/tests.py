@@ -104,6 +104,27 @@ class DocumentAPITests(APITestCase):
 
         self.client.logout()
 
+    def test_create_document_on_existing_url_returns_500(self):
+        self.client.login(username='temporary', password='temporary')
+        test_file_name1 = "users/temporary/post500-1.txt"
+        test_document_url = 'post/url/post500.txt'
+        create_test_file(test_file_name1)
+        data = {'url': test_document_url, 'file': open(test_file_name1)}
+        response = self.client.post('/documents/', data, format='multipart')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        test_file_name2 = "users/temporary/post500-2.txt"
+
+        create_test_file(test_file_name2)
+
+        self.client.raise_request_exception = False
+        data = {'url': test_document_url, }
+        response = self.client.post('/documents/', data, format='multipart')
+
+        self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+        self.client.logout()
+
     def test_add_new_revision_assert_fields(self):
         self.client.login(username='temporary', password='temporary')
 
